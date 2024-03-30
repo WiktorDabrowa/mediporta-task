@@ -1,13 +1,19 @@
 import { Table, TableBody, TableCell, TableContainer,
         TableHead, TableRow, CircularProgress } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { selectSettings } from './settingsSlice';
+
 
 export default function ContentList(props) {
     
-    const data = props.data
-    const sortBy = props.sortBy
-    const sortDirection = props.sortDirection
+    const data = props.data.items || []
     const isLoading = props.isLoading
     const error = props.error
+    const page = props.page
+    const settings = useSelector(selectSettings)
+
+    const firstItemIndex = (page-1) * settings.pageSize + 1
+
 
     const loadingStyles = {
             backgroundColor:'#1976d250',
@@ -19,9 +25,10 @@ export default function ContentList(props) {
             alignItems:'center'
     }
 
-    const content = data.map((item) => {
+    const content = data.map((item, itemIndex) => {
         return (
-            <TableRow key={item.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+            <TableRow hover key={item.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableCell sx={{ width: '0px' }} align='left'>{firstItemIndex+itemIndex}</TableCell>
                 <TableCell>{item.name}</TableCell>
                 <TableCell align='right'>{item.count}</TableCell>
             </TableRow>
@@ -33,6 +40,7 @@ export default function ContentList(props) {
             <Table stickyHeader size="small">
                 <TableHead sx={{ borderBottom: '2px solid black'}}>
                     <TableRow>
+                        <TableCell align='left'>No.</TableCell>
                         <TableCell>Tag Name</TableCell>
                         <TableCell align='right'>Count</TableCell>
                     </TableRow>
@@ -45,6 +53,7 @@ export default function ContentList(props) {
                     }
                     {error &&
                         <TableRow>
+                            <TableCell></TableCell>
                             <TableCell sx={{color:'error.main'}}>{error}</TableCell>
                         </TableRow>
                     }

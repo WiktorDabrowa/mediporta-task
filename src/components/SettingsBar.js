@@ -1,14 +1,16 @@
 import { Grid, Select, InputLabel, MenuItem, FormControl } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectSettings, setSetting } from './settingsSlice.js';
 
-export default function SettingsBar(props) {
-    const settings = props.settings
-    const setSettings = props.setSettings
+
+export default function SettingsBar() {
+    const settings = useSelector(selectSettings);
+    const dispatch = useDispatch()
 
     function handleChange(e) {
-        setSettings({
-            ...settings,
-            [e.target.name]: e.target.value
-        })
+        dispatch(setSetting(
+            {name: e.target.name, value: e.target.value},
+        ));
     }
 
     return (

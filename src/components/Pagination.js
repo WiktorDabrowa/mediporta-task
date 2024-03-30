@@ -3,6 +3,7 @@ import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRigh
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
 
 export default function Pagination(props) {
+
     const page = props.page;
     const setPage = props.setPage;
     const hasMore = props.hasMore;
@@ -25,7 +26,7 @@ export default function Pagination(props) {
                     <KeyboardArrowLeftRoundedIcon sx={{ pointerEvents: 'none'}}></KeyboardArrowLeftRoundedIcon>
                 </Button>
                 <Button disabled>{page}</Button>
-                <Button value='next' onClick={handleChange} disabled={hasMore ? true : false}>
+                <Button value='next' onClick={handleChange} disabled={!hasMore}>
                     <KeyboardArrowRightRoundedIcon sx={{ pointerEvents: 'none'}}></KeyboardArrowRightRoundedIcon>
                 </Button>
             </ButtonGroup>
