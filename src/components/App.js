@@ -1,13 +1,15 @@
-import Button from '@mui/material/Button';
+import TagBrowser from './TagBrowser';
 
-
-function App() {
+function App() {  
   return (
-    <div className="App">
+    <>
       <header className="App-header">
-        <h1>Mediporta task</h1>
+        <h1>Stackoverflow Tag browser</h1>
       </header>
-    </div>
+      <main>
+        <TagBrowser />
+      </main>
+    </>
   );
 }
 
