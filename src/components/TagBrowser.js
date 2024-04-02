@@ -12,17 +12,17 @@ import { useState, useEffect } from 'react';
 export default function TagBrowser() {
 
     const settings = useSelector(selectSettings)
+    const [appState, setAppState] = useState('ok') // 'ok'/'loading'/'error'
     const [error, setError] = useState(null)
     const [data, setData] = useState({})
     const [page, setPage] = useState(1)
-    const [isLoading, setIsLoading] = useState(true)
     const hasMore = data.has_more
 
     const containerStyle = {
         border: 1,
         borderRadius: 2,
         boxShadow: 5,
-        pointerEvents: isLoading ? 'none' : 'auto',
+        pointerEvents: appState === 'loading' ? 'none' : 'auto',
         position: 'relative'
     }
 
@@ -43,17 +43,17 @@ export default function TagBrowser() {
             })
             .then((data) => {
                 setData(data)
-                setIsLoading(false)
+                setAppState('ok')
             })
             .catch(function(error) {
                 const message = error.response.data.error_message || "Unknown error"
                 const statusCode = error.response.status;
                 setError(`Error ${statusCode} occured: ${message}`)
                 setData({})
-                setIsLoading(false)
+                setAppState('error')
             })
         setError(null)
-        setIsLoading(true)
+        setAppState('loading')
       }, [fetchUrl]);
 
     return (
@@ -62,7 +62,7 @@ export default function TagBrowser() {
             <ContentList 
                 data={data}
                 error={error}
-                isLoading={isLoading}
+                appState={appState}
                 page={page}
                 />
             <Pagination 

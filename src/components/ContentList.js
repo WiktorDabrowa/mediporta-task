@@ -7,7 +7,7 @@ import { selectSettings } from './settingsSlice';
 export default function ContentList(props) {
     
     const data = props.data.items || []
-    const isLoading = props.isLoading
+    const appState = props.appState
     const error = props.error
     const page = props.page
     const settings = useSelector(selectSettings)
@@ -46,18 +46,18 @@ export default function ContentList(props) {
                     </TableRow>
                 </TableHead>
                 <TableBody sx={{ position: 'relative'}}>
-                    {isLoading &&
+                    {appState === 'loading' &&
                         <TableRow sx={loadingStyles}>
                             <CircularProgress />
                         </TableRow>
                     }
-                    {error &&
+                    {appState === 'error' &&
                         <TableRow>
                             <TableCell></TableCell>
                             <TableCell sx={{color:'error.main'}}>{error}</TableCell>
                         </TableRow>
                     }
-                    {content}
+                    {appState !== 'error' && content}
                 </TableBody>
             </Table>
         </TableContainer>
