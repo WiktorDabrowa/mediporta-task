@@ -9,6 +9,7 @@ export default function Pagination(props) {
     const hasMore = props.hasMore;
 
     function handleChange(e) {
+        // eslint-disable-next-line
         switch (e.target.value) {
             case "prev":
                 setPage(page-1);
