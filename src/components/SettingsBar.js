@@ -4,6 +4,7 @@ import { selectSettings, setSetting } from './settingsSlice.js';
 
 
 export default function SettingsBar() {
+
     const settings = useSelector(selectSettings);
     const dispatch = useDispatch()
 
@@ -14,7 +15,7 @@ export default function SettingsBar() {
     }
 
     return (
-            <Grid container sx={{ padding:'20px', borderBottom: '1px solid black' }}>
+            <Grid container sx={{ padding:'20px' }}>
                 <Grid item xs={3}>
                     <FormControl variant='standard' fullWidth>
                         <InputLabel id='pagesize'>Page Size</InputLabel>

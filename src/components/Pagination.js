@@ -20,9 +20,9 @@ export default function Pagination(props) {
     }
 
     return (
-        <Box display='flex' justifyContent='center' padding={1} borderTop={1}>
+        <Box display='flex' justifyContent='center' padding={1}>
             <ButtonGroup variant='contained'>
-                <Button value='prev' onClick={handleChange} disabled={page === 1 ? true : false} >
+                <Button value='prev' onClick={handleChange} disabled={page <= 1 ? true : false} >
                     <KeyboardArrowLeftRoundedIcon sx={{ pointerEvents: 'none'}}></KeyboardArrowLeftRoundedIcon>
                 </Button>
                 <Button disabled>{page}</Button>

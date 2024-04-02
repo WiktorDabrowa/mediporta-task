@@ -36,7 +36,7 @@ export default function ContentList(props) {
     })
 
     return (
-        <TableContainer sx={{ maxHeight: 440 }}>
+        <TableContainer sx={{ maxHeight: 440, borderBottom: '1px solid black', borderTop: '1px solid black',}}>
             <Table stickyHeader size="small">
                 <TableHead sx={{ borderBottom: '2px solid black'}}>
                     <TableRow>
