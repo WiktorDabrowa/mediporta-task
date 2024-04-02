@@ -1,4 +1,3 @@
-import { number, string } from 'prop-types';
 import ContentList from '../components/ContentList';
 import { Mockstore, MockState } from './MockStore';
 

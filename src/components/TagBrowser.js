@@ -47,7 +47,7 @@ export default function TagBrowser() {
             })
             .catch(function(error) {
                 const message = error.response.data.error_message || "Unknown error"
-                const statusCode = error.response.status;
+                const statusCode = error.response.status || '';
                 setError(`Error ${statusCode} occured: ${message}`)
                 setData({})
                 setAppState('error')
